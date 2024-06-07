@@ -18,6 +18,14 @@ assert.ok(process.env.JAMBONES_APPLICATION_SID, 'missing env JAMBONES_APPLICATIO
 // '3d9108c8-166e-4473-bebd-8a99e94a12a6'
 assert.ok(process.env.JAMBONES_API_KEY, 'missing env JAMBONES_API_KEY');
 
+// eslint-disable-next-line max-len
+const mainUserPassword = '$argon2i$v=19$m=65536,t=3,p=4$WvsgfsGZfPMiPHFwjo3eVHLDUNrvqIqhNznmKi/o+C4$O/AXrx21b/KQKSEeq0aW1+6PNSwi1fAOTNYsNZD6zmw';
+// mainUserPassword = yiYJ#Zp7VJpGz!JNRbLv
+
+// eslint-disable-next-line max-len
+const adminUserPassword = '$argon2i$v=19$m=65536,t=3,p=4$8TPCfVA/fEos66jx8GP95gAzTF3fL9r8Fi/VamcGeww$MZ1xb9LUaRvlBOv9hSn6j6jzH3z6WxsjTI8wAwoQrl4';
+// adminUserPassword = k5NS4qnm9pzKxewQQvit
+
 const opts = {
   host: process.env.JAMBONES_MYSQL_HOST,
   user: process.env.JAMBONES_MYSQL_USER,
@@ -62,6 +70,22 @@ const apiKeyData = {
   accountSid: accountData.sid,
 };
 
+const mainUserData = {
+  sid: 'c9ac00d1-34f3-426c-a44e-09be2cb526da',
+  name: 'main',
+  email: 'main@domain.com',
+  hashedPassword: mainUserPassword,
+  accountSid: accountData.sid,
+  serviceProviderSid: accountData.serviceProviderSid,
+};
+
+const adminUserData = {
+  sid: '12c80508-edf9-4b22-8d09-55abd02648eb',
+  name: 'admin',
+  email: 'admin@domain.com',
+  hashedPassword: adminUserPassword,
+};
+
 
 const newAccountSql =
     `insert into accounts (account_sid, name, sip_realm, service_provider_sid, plan_type, webhook_secret) 
@@ -96,6 +120,19 @@ const newApplicationSql =
 const newApiKeySql = `insert into api_keys (api_key_sid, token, account_sid) 
     values (${apiKeyData.sid}, ${apiKeyData.token}, ${apiKeyData.accountSid});`;
 
+const mainUserSql = `insert into users (user_sid, name, email, hashed_password, account_sid, service_provider_sid) 
+    values (
+        ${mainUserData.sid},
+        ${mainUserData.name},
+        ${mainUserData.email},
+        ${mainUserData.hashedPassword},
+        ${mainUserData.accountSid},
+        ${mainUserData.serviceProviderSid}
+    );`;
+
+const adminUserSql = `insert into users (user_sid, name, email, hashed_password) 
+    values (${adminUserData.sid}, ${adminUserData.name}, ${adminUserData.email}, ${adminUserData.hashedPassword});`;
+
 const doIt = async() => {
   let connection;
   try {
@@ -111,6 +148,9 @@ const doIt = async() => {
   await connection.execute(newCallStatusHookSql);
   await connection.execute(newApplicationSql);
   await connection.execute(newApiKeySql);
+
+  await connection.execute(mainUserSql);
+  await connection.execute(adminUserSql);
 
   await connection.end();
   logger.info('IVR app data created successfully');
