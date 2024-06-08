@@ -60,8 +60,8 @@ const applicationData = {
   sid: process.env.JAMBONES_APPLICATION_SID,
   name: 'IVR',
   accountSid: accountData.sid,
-  call_hook_sid: callHookData.sid,
-  call_status_hook_sid: callStatusHookData.sid,
+  callHookSid: callHookData.sid,
+  callStatusHookSid: callStatusHookData.sid,
 };
 
 const apiKeyData = {
