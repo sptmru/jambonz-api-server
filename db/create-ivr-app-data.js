@@ -90,48 +90,53 @@ const adminUserData = {
 const newAccountSql =
     `insert into accounts (account_sid, name, sip_realm, service_provider_sid, plan_type, webhook_secret) 
     values (
-        ${accountData.sid},
-        ${accountData.name},
-        ${accountData.sipRealm},
-        ${accountData.serviceProviderSid},
-        ${accountData.planType},
-        ${accountData.webhookSecret},
+        '${accountData.sid}',
+        '${accountData.name}',
+        '${accountData.sipRealm}',
+        '${accountData.serviceProviderSid}',
+        '${accountData.planType}',
+        '${accountData.webhookSecret}',
     );`;
 
 const newCallHookSql =
     `insert into webhooks (webhook_sid, url, method) 
-    values (${callHookData.sid}, ${callHookData.url}, ${callHookData.method});`;
+    values ('${callHookData.sid}', '${callHookData.url}', '${callHookData.method}');`;
 
 const newCallStatusHookSql =
     `insert into webhooks (webhook_sid, url, method) 
-    values (${callStatusHookData.sid}, ${callStatusHookData.url}, ${callStatusHookData.method});`;
+    values ('${callStatusHookData.sid}', '${callStatusHookData.url}', '${callStatusHookData.method}');`;
 
 const newApplicationSql =
     `insert into applications (application_sid, name, account_sid, call_hook_sid, call_status_hook_sid) 
     values 
         (
-            ${applicationData.sid},
-            ${applicationData.name},
-            ${applicationData.accountSid},
-            ${applicationData.callHookSid},
-            ${applicationData.callStatusHookSid}
+            '${applicationData.sid}',
+            '${applicationData.name}',
+            '${applicationData.accountSid}',
+            '${applicationData.callHookSid}',
+            '${applicationData.callStatusHookSid}'
         );`;
 
 const newApiKeySql = `insert into api_keys (api_key_sid, token, account_sid) 
-    values (${apiKeyData.sid}, ${apiKeyData.token}, ${apiKeyData.accountSid});`;
+    values ('${apiKeyData.sid}', '${apiKeyData.token}', '${apiKeyData.accountSid}');`;
 
 const mainUserSql = `insert into users (user_sid, name, email, hashed_password, account_sid, service_provider_sid) 
     values (
-        ${mainUserData.sid},
-        ${mainUserData.name},
-        ${mainUserData.email},
-        ${mainUserData.hashedPassword},
-        ${mainUserData.accountSid},
-        ${mainUserData.serviceProviderSid}
+        '${mainUserData.sid}',
+        '${mainUserData.name}',
+        '${mainUserData.email}',
+        '${mainUserData.hashedPassword}',
+        '${mainUserData.accountSid}',
+        '${mainUserData.serviceProviderSid}'
     );`;
 
 const adminUserSql = `insert into users (user_sid, name, email, hashed_password) 
-    values (${adminUserData.sid}, ${adminUserData.name}, ${adminUserData.email}, ${adminUserData.hashedPassword});`;
+    values (
+      '${adminUserData.sid}',
+      '${adminUserData.name}',
+      '${adminUserData.email}',
+      '${adminUserData.hashedPassword}'
+    );`;
 
 const doIt = async() => {
   let connection;
