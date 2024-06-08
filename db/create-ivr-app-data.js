@@ -11,7 +11,7 @@ assert.ok(process.env.JAMBONES_MYSQL_USER, 'missing env JAMBONES_MYSQL_USER');
 
 assert.ok(process.env.JAMBONES_SIP_DOMAIN, 'missing env JAMBONES_SIP_DOMAIN');
 assert.ok(process.env.BASE_IVR_APP_URL, 'missing env BASE_IVR_APP_URL');
-// 'x012y987-a123-b234-c345-d456e567f678'
+// 'a012c987-a123-2ccd-bb88-d456e567f678'
 assert.ok(process.env.JAMBONES_ACCOUNT_SID, 'missing env JAMBONES_ACCOUNT_SID');
 // '55123cc2-3456-4d56-88ac-2aa4f0fd93a9'
 assert.ok(process.env.JAMBONES_APPLICATION_SID, 'missing env JAMBONES_APPLICATION_SID');
@@ -45,13 +45,13 @@ const accountData = {
 };
 
 const callHookData = {
-  sid: '8mmfasf8-0123-4567-a16b-12a5nn830001',
+  sid: '8abfadf8-0123-4567-a16b-12a5cc830001',
   url: `${process.env.BASE_IVR_APP_URL}/ivr-callback`,
   method: 'POST',
 };
 
 const callStatusHookData = {
-  sid: '8mmfasf8-0123-4567-a16b-12a5nn830002',
+  sid: '8abfadf8-0123-4567-a16b-12a5cc830002',
   url: `${process.env.BASE_IVR_APP_URL}/status-callback`,
   method: 'POST',
 };
@@ -65,7 +65,7 @@ const applicationData = {
 };
 
 const apiKeyData = {
-  sid: '3958447b-b68d-4ef4-9c5f-5a11g6v552314',
+  sid: 'c958447b-b68d-4ef4-9c5f-5a11a6d55231',
   token: process.env.JAMBONES_API_KEY,
   accountSid: accountData.sid,
 };
