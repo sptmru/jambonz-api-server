@@ -87,25 +87,25 @@ const adminUserData = {
 };
 
 // eslint-disable-next-line max-len
-const newAccountSql = `insert into accounts (account_sid, name, sip_realm, service_provider_sid, plan_type, webhook_secret) values ('${accountData.sid}','${accountData.name}','${accountData.sipRealm}','${accountData.serviceProviderSid}','${accountData.planType}','${accountData.webhookSecret}');`;
+const newAccountSql = `insert ignore into accounts (account_sid, name, sip_realm, service_provider_sid, plan_type, webhook_secret) values ('${accountData.sid}','${accountData.name}','${accountData.sipRealm}','${accountData.serviceProviderSid}','${accountData.planType}','${accountData.webhookSecret}');`;
 
 // eslint-disable-next-line max-len
-const newCallHookSql = `insert into webhooks (webhook_sid, url, method) values ('${callHookData.sid}', '${callHookData.url}', '${callHookData.method}');`;
+const newCallHookSql = `insert ignore into webhooks (webhook_sid, url, method) values ('${callHookData.sid}', '${callHookData.url}', '${callHookData.method}');`;
 
 // eslint-disable-next-line max-len
-const newCallStatusHookSql = `insert into webhooks (webhook_sid, url, method) values ('${callStatusHookData.sid}', '${callStatusHookData.url}', '${callStatusHookData.method}');`;
+const newCallStatusHookSql = `insert ignore into webhooks (webhook_sid, url, method) values ('${callStatusHookData.sid}', '${callStatusHookData.url}', '${callStatusHookData.method}');`;
 
 // eslint-disable-next-line max-len
-const newApplicationSql = `insert into applications (application_sid, name, account_sid, call_hook_sid, call_status_hook_sid) values ('${applicationData.sid}','${applicationData.name}','${applicationData.accountSid}','${applicationData.callHookSid}','${applicationData.callStatusHookSid}');`;
+const newApplicationSql = `insert ignore into applications (application_sid, name, account_sid, call_hook_sid, call_status_hook_sid) values ('${applicationData.sid}','${applicationData.name}','${applicationData.accountSid}','${applicationData.callHookSid}','${applicationData.callStatusHookSid}');`;
 
 // eslint-disable-next-line max-len
-const newApiKeySql = `insert into api_keys (api_key_sid, token, account_sid) values ('${apiKeyData.sid}', '${apiKeyData.token}', '${apiKeyData.accountSid}');`;
+const newApiKeySql = `insert ignore into api_keys (api_key_sid, token, account_sid) values ('${apiKeyData.sid}', '${apiKeyData.token}', '${apiKeyData.accountSid}');`;
 
 // eslint-disable-next-line max-len
-const mainUserSql = `insert into users (user_sid, name, email, hashed_password, account_sid, service_provider_sid) values ('${mainUserData.sid}','${mainUserData.name}','${mainUserData.email}','${mainUserData.hashedPassword}','${mainUserData.accountSid}','${mainUserData.serviceProviderSid}');`;
+const mainUserSql = `insert ignore into users (user_sid, name, email, hashed_password, account_sid, service_provider_sid) values ('${mainUserData.sid}','${mainUserData.name}','${mainUserData.email}','${mainUserData.hashedPassword}','${mainUserData.accountSid}','${mainUserData.serviceProviderSid}');`;
 
 // eslint-disable-next-line max-len
-const adminUserSql = `insert into users (user_sid, name, email, hashed_password) values ('${adminUserData.sid}','${adminUserData.name}','${adminUserData.email}','${adminUserData.hashedPassword}');`;
+const adminUserSql = `insert ignore into users (user_sid, name, email, hashed_password) values ('${adminUserData.sid}','${adminUserData.name}','${adminUserData.email}','${adminUserData.hashedPassword}');`;
 
 const doIt = async() => {
   let connection;
