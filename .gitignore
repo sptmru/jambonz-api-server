@@ -40,7 +40,8 @@ examples/*
 
 create_db.sql
 
-.vscode
+.vscode/
+.idea/
 
 .env.*
 .env
