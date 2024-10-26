@@ -58,3 +58,21 @@ jobs:
 
       - name: Push Jambonz API server image to Docker Hub
         run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/jambonz-api-server-custom:${{ steps.increment_version.outputs.new_version }}
+
+      - name: Build and push Jambonz API server image for ARM
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: ./Dockerfile
+          platforms: linux/arm64
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/jambonz-api-server-custom:${{ steps.increment_version.outputs.new_version }}
+      
+      - name: Build and push Jambonz db-create image for ARM
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: ./Dockerfile.db-create
+          platforms: linux/arm64
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/jambonz-db-create:${{ steps.increment_version.outputs.new_version }}
